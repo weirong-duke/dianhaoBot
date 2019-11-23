@@ -1,0 +1,17 @@
+{
+  "name": "DLOBot",
+  "version": "1.0.0",
+  "description": "Dianhao's Bot",
+  "main": "index.js",
+  "repository": "none",
+  "author": "Weirong",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@types/node": "^12.12.7",
+    "discord.js": "^11.5.1",
+    "eslint": "^6.6.0",
+    "lodash": "^4.17.15",
+    "markov-chain-js": "^1.0.2"
+  }
+}

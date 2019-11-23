@@ -1,0 +1,7 @@
+source.json
+tsconfig.json
+users.json
+ngrams/*
+beginnings/*
+node_modules/*
+.idea*
