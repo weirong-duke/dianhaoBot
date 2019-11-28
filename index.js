@@ -1,25 +1,24 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const markov = require('./src/generateResponse');
-const {userIds} = require('./constants/userIds');
-const generateMarkovResponse = markov.generateMarkovResponse;
-const {botCommandPrefix, channels, dianhaoNames, emojiIds, timeBetweenMessages} = require('./constants/general');
-var Sentiment = require('sentiment');
-var sentiment = new Sentiment();
-// const {fetchHeadingFromUrl} = require('./src/parseHtmlLink')
-const {fetchKeywordsFromUrl, topWordScores} = require('./src/parseHtmlBody')
-const {classifyText} = require('./src/generateNetResponse');
-const {LinkMessage, LinkMessageKeyword} = require('./models');
-const client = new Discord.Client();
-const path = 'source.json';
-const {normalizeScore} = require('./utils/general');
+const Sentiment = require('sentiment');
 const Sequelize = require('sequelize');
+
+const {botCommandPrefix, channels, dianhaoNames, emojiIds, timeBetweenMessages} = require('./constants/general');
+const {userIds} = require('./constants/userIds');
+const {LinkMessage, LinkMessageKeyword} = require('./models');
+const markov = require('./src/generateResponse');
+const {fetchKeywordsFromUrl, topWordScores} = require('./src/parseHtmlBody')
+const {normalizeScore} = require('./utils/general');
+
+const client = new Discord.Client();
 const Op = Sequelize.Op;
+const sentiment = new Sentiment();
+const generateMarkovResponse = markov.generateMarkovResponse;
+
+const path = 'source.json';
 
 let lastMessageTime = Date.now();
 const REGEX_URL = new RegExp(`.*(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)).*`)
-let lastLinkMessageUrl;
-
 
 const throttledSend = (message, string) => {
   if (message.createdTimestamp - lastMessageTime > timeBetweenMessages) {
