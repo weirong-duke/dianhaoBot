@@ -21,7 +21,7 @@ const fetchMessagesForChannel = async (channelId) => {
     for (let x = 0; x<200 ; x++) {
       try {
         const options = {limit: 100, before: lastMessageId || undefined};
-        const response = await channel.fetchMessages(options)
+        await channel.fetchMessages(options)
           .then(messages => {
               messages.forEach(message => {
                 if (!(message.author.name in Object.keys(userList))) {

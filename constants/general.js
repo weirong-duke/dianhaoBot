@@ -11,6 +11,8 @@ const WILSON_GENERAL_CHANNEL_ID = "256941913691783168";
 const TEST_CHANNEL = "642520905754607618";
 const TIME_BETWEEN_MESSAGES_MILLISECONDS = 20000;
 
+const BOT_COMMAND_PREFIX = '!'
+
 const channels = {
   OG_GENERAL_CHANNEL_ID,
   OG_KRIEGER_CHANNEL_ID,
@@ -23,8 +25,18 @@ const channels = {
 
 const DATA_SOURCE_PATH = "source.json";
 
+const URL_REGEX = new RegExp(`((([A-Za-z]{3,9}:(?:\\/\\/)?)(?:[\\-;:&=\\+\\$,\\w]+@)?[A-Za-z0-9\\.\\-]+|(?:www\\.|[\\-;:&=\\+\\$,\\w]+@)[A-Za-z0-9\\.\\-]+)((?:\\/[\\+~%\\/\\.\\w\\-_]*)?\\??(?:[\\-\\+=&;%@\\.\\w_]*)#?(?:[\\.\\!\\/\\\\\\w]*))?)`, 'g');
+const TWITTER_PIC_URL_REGEX = new RegExp(`pic.twitter.com\\/[a-zA-z0-9]+`, 'g');
+
+const regexes = {
+  url: URL_REGEX,
+  twitterPicUrl: TWITTER_PIC_URL_REGEX
+};
+
+exports.botCommandPrefix = BOT_COMMAND_PREFIX;
 exports.channels = channels;
-exports.emojiIds = EMOJI_IDS;
-exports.dianhaoNames = DIANHAO_NAMES;
-exports.timeBetweenMessages = TIME_BETWEEN_MESSAGES_MILLISECONDS;
 exports.dataSourcePath = DATA_SOURCE_PATH;
+exports.dianhaoNames = DIANHAO_NAMES;
+exports.emojiIds = EMOJI_IDS;
+exports.regexes = regexes;
+exports.timeBetweenMessages = TIME_BETWEEN_MESSAGES_MILLISECONDS;
